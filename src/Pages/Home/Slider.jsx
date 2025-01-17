@@ -11,7 +11,7 @@ const Slider = () => {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 10500,
+          delay: 2500,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -27,7 +27,7 @@ const Slider = () => {
                 <h1 className='lg:text-4xl text-xl text-white font-serif mb-4'>Empowering Teams, Simplifying Management</h1>
                 <p>Effortless workflow and HR management at your fingertips.</p>
                 </div>
-                <div><img className='lg:w-full md:w-full w-[300px] lg:h-[400px] md:h-[400px] h-[200px]' src="https://i.ibb.co.com/TMsQnKt/download.png" alt="" /></div>
+                <div><img className='lg:w-full md:w-full w-[300px] lg:h-[400px] md:h-[400px] h-[200px]' src="https://i.ibb.co.com/bX7MMN4/download.png" alt="" /></div>
             </div>
         </SwiperSlide>
         <SwiperSlide>
@@ -36,7 +36,7 @@ const Slider = () => {
                 <h1 className='lg:text-4xl text-xl text-white font-serif mb-4'>Work Smarter, Manage Better</h1>
                 <p>Streamline your tasks, payments, and performance tracking with ease.</p>
                 </div>
-                <div><img className='lg:w-full md:w-full w-[300px] lg:h-[400px] md:h-[400px] h-[200px]' src="https://i.ibb.co.com/mR09zPV/download.png" alt="" /></div>
+                <div><img className='lg:w-full md:w-full w-[300px] lg:h-[400px] md:h-[400px] h-[200px]' src="https://i.ibb.co.com/TcktThq/download.png" alt="" /></div>
             </div>
         </SwiperSlide>
         <SwiperSlide>
@@ -45,7 +45,7 @@ const Slider = () => {
                 <h1 className='lg:text-4xl text-xl text-white font-serif mb-4'>Your Workforce, Our Fusion</h1>
                 <p>A seamless platform to manage employees and elevate productivity.</p>
                 </div>
-                <div><img className='lg:w-full md:w-full w-[300px] lg:h-[400px] md:h-[400px] h-[200px]' src="https://i.ibb.co.com/VqBRV7B/download.png" alt="" /></div>
+                <div><img className='lg:w-full md:w-full w-[300px] lg:h-[400px] md:h-[400px] h-[200px]' src="https://i.ibb.co.com/mXZ4K6H/download.png" alt="" /></div>
             </div>
         </SwiperSlide>
 
