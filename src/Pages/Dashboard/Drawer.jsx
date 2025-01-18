@@ -22,15 +22,17 @@ navigate('/')
 
   <div className="drawer-content flex flex-col items-center justify-center">
     {/* Page content here */}
-  <Outlet></Outlet>
-        
-<label htmlFor="my-drawer-2" className="btn btn-primary btn-sm drawer-button flex justify-end lg:hidden">
+    <label htmlFor="my-drawer-2" className="btn btn-primary btn-sm drawer-button flex justify-end lg:hidden">
 <TiThMenu />
 </label>
+  <Outlet></Outlet>
+        
+
   </div>
   <div className="drawer-side">
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
     <ul className="menu bg-base-200 text-xl min-h-full w-80 p-4">
+      
       {/* Sidebar content here */}
 <h1 className="text-3xl font-bold mb-6 italic"> Work Fusion</h1>
       <div className="flex">

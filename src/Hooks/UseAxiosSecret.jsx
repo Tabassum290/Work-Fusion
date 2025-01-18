@@ -7,7 +7,7 @@ export const axiosSecure = axios.create({
     baseURL:'http://localhost:4000'
 })
 
-const UseAxios = () => {
+const UseAxiosSecret = () => {
     const navigate = useNavigate();
     const {logOut} = useContext(AuthContext)
     axiosSecure.interceptors.request.use(function(config){
@@ -36,4 +36,4 @@ axiosSecure.interceptors.response.use((function(response){
     return axiosSecure;
 };
 
-export default UseAxios;
+export default UseAxiosSecret;

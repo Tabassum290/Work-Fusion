@@ -64,6 +64,7 @@ const Register = () => {
             role: role,
             salary: parseInt(salary),
             image: imageUrl,
+            designation : designation
           };
           const response = await axiosPublic.post("/users", userInfo);
       
@@ -93,6 +94,7 @@ const Register = () => {
                 name: result.user?.displayName,
                 bank: 4242424242424242,
                 salary: parseInt(20000),
+                designation:"Marketer",
                 image:result.user?.photoURL,
                 role:"employee",
             }
@@ -115,6 +117,7 @@ const handleGithub = () =>{
             name: result.user?.displayName,
             bank: 4242424242424242,
             role:"employee",
+            designation:"Marketer",
             salary: parseInt(20000),
             image:result.user?.photoURL
         }

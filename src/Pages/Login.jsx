@@ -42,7 +42,8 @@ const Login = () => {
                 bank: 4242424242424242,
                 salary:20000,
                 photo:result.user?.photoURL,
-				role:'employee'
+				role:'employee',
+				designation:"Marketer",
 			}
 			axiosPublic.post('/users',userInfo)
 			.then(res=>{
@@ -62,7 +63,8 @@ const handleGithub = () =>{
 			bank: 4242424242424242,
 			salary:20000,
 			photo:result.user?.photoURL,
-			role:'employee'
+			role:'employee',
+			designation:"Marketer",
 		}
 		axiosPublic.post('/users',userInfo)
 		.then(res=>{
