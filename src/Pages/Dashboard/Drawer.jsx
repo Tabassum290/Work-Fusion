@@ -1,14 +1,12 @@
-
-import { Link } from "react-router-dom";
-import Footer from "../Components/Footer";
+import { FcBearish, FcCallback, FcHome } from "react-icons/fc";
 import { LuLogOut } from "react-icons/lu";
 import { TiThMenu } from "react-icons/ti";
-import { FcBearish, FcCallback, FcHome } from "react-icons/fc";
-const Dashboard = () => {
+import { Link } from "react-router-dom";
 
+const Drawer = () => {
     return (
         <div>
-<div className="drawer lg:drawer-open">
+            <div className="drawer lg:drawer-open">
   <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
   <div className="drawer-content flex flex-col items-center justify-center">
     {/* Page content here */}
@@ -38,17 +36,8 @@ const Dashboard = () => {
     </ul>
   </div>
 </div>
-
-
-<main>
-
-</main>
-<Footer/>
-
-
-
         </div>
     );
 };
 
-export default Dashboard;
+export default Drawer;
