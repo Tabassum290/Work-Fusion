@@ -1,19 +1,20 @@
 import { createUserWithEmailAndPassword, 
     onAuthStateChanged, signInWithEmailAndPassword,
      signOut, updateProfile, GoogleAuthProvider,  
-     signInWithPopup} from "firebase/auth";
+     signInWithPopup,
+     GithubAuthProvider} from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 import { auth } from "../firebase";
 
 export const AuthContext = createContext(null);
-
+const gitProvider = new GithubAuthProvider();
 const provider = new GoogleAuthProvider();
+
 const AuthProvider = ({children}) => {
     const [user,setUser] = useState(null);
     const [loading,setLoading] = useState(true);
     const axiosPublic = UseAxiosPublic()
-
 
     const createNewUser=(email,password)=>{
         setLoading(true);
@@ -26,6 +27,7 @@ const LoginUser = (email,password)=>{
 }
 
 const profileUpdate = (name,photo)=>{
+    console.log("Updating profile with name:", name, "and photo:", photo);
  return  updateProfile(auth.currentUser,{
         displayName:name,photoURL:photo
     })
@@ -36,7 +38,9 @@ const googleProvider =()=>{
     return signInWithPopup(auth,provider);
 }
 
-
+const signInWithGitHub =() => {
+   return signInWithPopup(auth, gitProvider);
+  };
 
 useEffect(()=>{
     const unSubscribe = onAuthStateChanged( auth,currentUser =>{
@@ -67,7 +71,7 @@ const logOut = ()=>{
 }
 
 const authInfo ={
-    user,profileUpdate,googleProvider,
+    user,profileUpdate,googleProvider,signInWithGitHub,
     createNewUser,loading,setLoading,setUser,LoginUser,logOut,
 }
     return (

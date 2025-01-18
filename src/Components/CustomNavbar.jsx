@@ -1,14 +1,40 @@
+import { useContext } from "react";
 import logo from "../assets/logowork.png"
 import { TiThMenu } from "react-icons/ti";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import { LuLogOut } from "react-icons/lu";
+import { FcPhone } from "react-icons/fc";
+import { FaHome, FaList, FaUserCircle } from "react-icons/fa";
+import { FaPersonRifle } from "react-icons/fa6";
 const CustomNavbar = () => {
+  const {user,logOut} = useContext(AuthContext)
+ const navigate = useNavigate();
+ console.log(user)
+const handleLogout = () =>{
+  logOut();
+  navigate('/')
+}
+
+
+
   const links =<>
+  {
+    user? <>
+  <NavLink to='/'><span className="text-2xl pr-2"><FaHome /></span>Home</NavLink>
+  <NavLink to='/dashboard'><span className="text-2xl pr-2"><FaList /></span>Dashboard</NavLink>
+  <NavLink to='/contacts'><span className="text-2xl pr-2"><FcPhone /></span>Contacts</NavLink>
+  <button onClick={handleLogout}><span className="text-2xl pr-2"><LuLogOut /></span>LogOut</button>
+    </> : <>
   <NavLink to='/'>Home</NavLink>
   <NavLink to='/dashboard'>Dashboard</NavLink>
   <NavLink to='/contacts'>Contacts</NavLink>
   <NavLink to='/login'>Login</NavLink>
   <NavLink to='/register'>Register</NavLink>
+    </> 
+  }
+
   </>
     return (
         <div className="sticky z-10 top-0 backdrop-blur">
@@ -39,23 +65,15 @@ const CustomNavbar = () => {
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+          {
+            user? <><img
+            alt={user?.displayName}
+            src={user?.photoURL} /></> : <><span className="text-4xl"><FaUserCircle /></span></>
+          }
+          
         </div>
       </div>
-      <ul
-        tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li>
-          <a className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
-      </ul>
+
     </div>
   </div>
 </div>

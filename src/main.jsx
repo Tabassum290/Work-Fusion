@@ -12,6 +12,12 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Dashboard from './Pages/Dashboard/Dashboard';
 import AuthProvider from './Provider/AuthProvider';
+import { HelmetProvider } from 'react-helmet-async';
+import PrivateRoute from './Private/PrivateRoute';
+import { ToastContainer } from 'react-toastify';
+import AdminRoute from './Private/AdminRoute';
+import AllEmployee from './Pages/Dashboard/AllEmployee';
+import Payroll from './Pages/Payroll';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +31,17 @@ const router = createBrowserRouter([
   },
   {
     path:'/dashboard',
-    element:<Dashboard/>
+    element:<PrivateRoute><Dashboard/></PrivateRoute>,
+    children:([
+      {
+        path:'allusers',
+        element:<AllEmployee/>
+      },
+      {
+        path:'payroll',
+        element:<Payroll/>
+      },
+    ])
   },
   {
     path:'/login',
@@ -39,9 +55,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <ToastContainer/>
+    <HelmetProvider>
     <AuthProvider>
     <RouterProvider router={router}></RouterProvider>
     </AuthProvider>
-   
-  </StrictMode>,
+</HelmetProvider>
+</StrictMode>,
 )
