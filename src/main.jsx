@@ -16,9 +16,14 @@ import { HelmetProvider } from 'react-helmet-async';
 import PrivateRoute from './Private/PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 import AllEmployee from './Pages/Dashboard/AllEmployee';
-import Payroll from './Pages/Payroll';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AdminRoute from './Private/AdminRoute';
+import Payroll from './Pages/Dashboard/Payroll';
+import EmployeeList from './Pages/Dashboard/EmployeeList';
+import PaymentHistory from './Pages/Dashboard/PaymentHistory';
+import Worksheet from './Pages/Dashboard/Worksheet';
+import Details from './Pages/Dashboard/Details';
+import Progress from './Pages/Dashboard/Progress';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -42,6 +47,26 @@ const router = createBrowserRouter([
       {
         path:'payroll',
         element:<AdminRoute><Payroll/></AdminRoute>
+      },
+      {
+        path:'employee-list',
+        element:<EmployeeList/>
+      },
+      {
+        path:'paymenthistory',
+        element:<PaymentHistory/>
+      },
+      {
+        path:'worksheet',
+        element:<Worksheet/>
+      },
+      {
+        path:'details',
+        element:<Details/>
+      },
+      {
+        path:'progress',
+        element:<Progress/>
       },
     ])
   },
