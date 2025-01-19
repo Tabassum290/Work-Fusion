@@ -6,7 +6,7 @@ import { useState } from "react";
 
 const AllEmployee = () => {
   const axiosSecure = UseAxiosSecret();
-  const [view, setView] = useState("table"); // State to toggle between table and card view
+  const [view, setView] = useState("table");
 
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
@@ -39,20 +39,29 @@ const AllEmployee = () => {
     });
   };
 
-  const handleAdmin = (user) => {
-    axiosSecure.patch(`users/admin/${user._id}`).then((res) => {
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        Swal.fire({
-          title: "Admin",
-          text: `${user.name} has been made Admin successfully.`,
-          icon: "success",
+  const handleMakeHr = (user) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to make ${user.name} HR.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Make HR!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/users/makehr/${user._id}`).then((res) => {
+          refetch();
+          Swal.fire({
+            title: "HR",
+            text: `${user.name} has been made HR successfully.`,
+            icon: "success",
+          });
         });
       }
     });
   };
 
-  // Toggle View
   const toggleView = () => {
     setView((prevView) => (prevView === "table" ? "card" : "table"));
   };
@@ -79,7 +88,7 @@ const AllEmployee = () => {
                 <th className="p-4">#</th>
                 <th className="p-4">Name</th>
                 <th className="p-4">Designation</th>
-                <th className="p-4">Make Admin</th>
+                <th className="p-4">Role</th>
                 <th className="p-4">Fire</th>
               </tr>
             </thead>
@@ -91,21 +100,28 @@ const AllEmployee = () => {
                   <td>{user.designation}</td>
                   <td>
                     {user.role === "admin" ? (
-                      <p className="flex text-lg p-2 text-green-600">
+                      <p className="flex text-lg p-2 text-blue-600">
                         <FcOk className="mr-2" />
                         Admin
                       </p>
+                    ) : user.role === "hr" ? (
+                      <p className="flex text-lg p-2 text-green-600">
+                        <FcOk className="mr-2" />
+                        HR
+                      </p>
                     ) : (
                       <button
-                        onClick={() => handleAdmin(user)}
+                        onClick={() => handleMakeHr(user)}
                         className="btn btn-sm btn-primary text-white"
                       >
-                        Make Admin
+                        Make HR
                       </button>
                     )}
                   </td>
                   <td>
-                    {user.isFired ? (
+                    {user.role === "admin" ? (
+                      <span className="text-gray-500">Cannot fire Admin</span>
+                    ) : user.isFired ? (
                       <span className="text-red-500">Fired</span>
                     ) : (
                       <button
@@ -129,25 +145,36 @@ const AllEmployee = () => {
               className="card bg-gray-100 shadow-md p-4 border rounded-lg"
             >
               <div>
-                <img src="" alt="" />
-              <h3 className="text-xl font-bold">{user.name}</h3>
+                <img
+                  className="w-12 h-12 rounded-3xl"
+                  src={user.image}
+                  alt=""
+                />
+                <h3 className="text-xl font-bold">{user.name}</h3>
               </div>
-              <p className="text-gray-600">Designation: {user.designation}</p>
+              <p className="text-blue-600">Designation: {user.designation}</p>
               <div className="flex justify-between mt-4">
                 {user.role === "admin" ? (
-                  <p className="text-green-600 flex items-center">
+                  <p className="text-blue-600 flex items-center">
                     <FcOk className="mr-2" />
                     Admin
                   </p>
+                ) : user.role === "hr" ? (
+                  <p className="text-green-600 flex items-center">
+                    <FcOk className="mr-2" />
+                    HR
+                  </p>
                 ) : (
                   <button
-                    onClick={() => handleAdmin(user)}
+                    onClick={() => handleMakeHr(user)}
                     className="btn btn-sm btn-primary"
                   >
-                    Make Admin
+                    Make HR
                   </button>
                 )}
-                {user.isFired ? (
+                {user.role === "admin" ? (
+                  <span className="text-gray-500">Cannot fire Admin</span>
+                ) : user.isFired ? (
                   <span className="text-red-500">Fired</span>
                 ) : (
                   <button
