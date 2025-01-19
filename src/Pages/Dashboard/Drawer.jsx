@@ -5,10 +5,11 @@ import { TiThMenu } from "react-icons/ti";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaDollarSign, FaUsers } from "react-icons/fa";
+import UseAdmin from "../../Hooks/UseAdmin";
 
 const Drawer = () => {
   const {user,logOut} = useContext(AuthContext);
-  const isAdmin = true;
+  const [isAdmin] = UseAdmin();
    const navigate = useNavigate();
 const handleLogout = () =>{
 logOut();
@@ -51,10 +52,14 @@ navigate('/')
          <Link to='/dashboard/allusers' className="flex my-4"><span className="text-2xl pr-2"><FaUsers /></span><p>All Employee</p></Link>
          <Link to='/dashboard/payroll' className="flex my-4"><span className="text-2xl pr-2"><FaDollarSign /></span><p>PayRoll</p></Link>
       </> : <>
-      
+      <Link to='/dashboard/allusers' className="flex my-4"><span className="text-2xl pr-2"><FaUsers /></span>
+      <p>WorkShit</p></Link>
+         <Link to='/dashboard/payroll' className="flex my-4"><span className="text-2xl pr-2"><FaDollarSign /></span>
+         <p>Payment History</p></Link>
       </>
     }
-      
+ <Link to='/dashboard/allusers' className="flex my-4"><span className="text-2xl pr-2"><FaUsers /></span><p>All Employee</p></Link>
+ <Link to='/dashboard/payroll' className="flex my-4"><span className="text-2xl pr-2"><FaDollarSign /></span><p>PayRoll</p></Link>
    
 
 {/* Shared */}

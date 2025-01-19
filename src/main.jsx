@@ -18,6 +18,7 @@ import { ToastContainer } from 'react-toastify';
 import AllEmployee from './Pages/Dashboard/AllEmployee';
 import Payroll from './Pages/Payroll';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import AdminRoute from './Private/AdminRoute';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -36,11 +37,11 @@ const router = createBrowserRouter([
     children:([
       {
         path:'allusers',
-        element:<AllEmployee/>
+        element:<AdminRoute><AllEmployee/></AdminRoute>
       },
       {
         path:'payroll',
-        element:<Payroll/>
+        element:<AdminRoute><Payroll/></AdminRoute>
       },
     ])
   },

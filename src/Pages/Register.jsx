@@ -59,7 +59,7 @@ const Register = () => {
       
           const userInfo = {
             name: name,
-            email: email,
+            email: email.toLowerCase(),
             bank: bank,
             role: role,
             salary: parseInt(salary),

@@ -7,11 +7,10 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { LuLogOut } from "react-icons/lu";
 import { FcPhone } from "react-icons/fc";
 import { FaHome, FaList, FaUserCircle } from "react-icons/fa";
-import { FaPersonRifle } from "react-icons/fa6";
+
 const CustomNavbar = () => {
   const {user,logOut} = useContext(AuthContext)
  const navigate = useNavigate();
- console.log(user)
 const handleLogout = () =>{
   logOut();
   navigate('/')
