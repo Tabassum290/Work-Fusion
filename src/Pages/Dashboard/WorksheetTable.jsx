@@ -67,8 +67,7 @@ const handleDelete = async (workId) => {
         const task = document.getElementById('task').value;
         const hours= document.getElementById('hours').value;
         const date = document.getElementById('date').value;
-  
-        if (!task || !hours|| !date) {
+         if (!task || !hours|| !date) {
           Swal.showValidationMessage("Please fill all the fields.");
           return false;
         }
