@@ -63,7 +63,6 @@ const router = createBrowserRouter([
       {
         path:'details/:id',
         element:<Details/>,
-        loader: ({params}) => fetch(`http://localhost:4000/users/${params.id}`)
       },
       {
         path:'progress',

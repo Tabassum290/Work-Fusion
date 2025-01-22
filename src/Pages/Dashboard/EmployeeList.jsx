@@ -17,7 +17,6 @@ const EmployeeList = () => {
     queryKey: ['users'], 
     queryFn: async () => {
       const res = await axiosSecure.get('employee-users');
-      console.log(res.data);
       return res.data.user;
     },
   });
@@ -113,7 +112,7 @@ const EmployeeList = () => {
                   </button>
                 </td>
                 <td>
-                  <Link to={`/details/${user._id}`}
+                  <Link to={`/dashboard/details/${user._id}`}
                     className="btn bg-red-600 text-white btn-sm"
                    
                   >
