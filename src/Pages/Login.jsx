@@ -44,6 +44,7 @@ const Login = () => {
                 photo:result.user?.photoURL,
 				role:'employee',
 				designation:"Marketer",
+				isVerified:false,
 			}
 			axiosPublic.post('/users',userInfo)
 			.then(res=>{
@@ -65,6 +66,7 @@ const handleGithub = () =>{
 			photo:result.user?.photoURL,
 			role:'employee',
 			designation:"Marketer",
+			isVerified:false,
 		}
 		axiosPublic.post('/users',userInfo)
 		.then(res=>{

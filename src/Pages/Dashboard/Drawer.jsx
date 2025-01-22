@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { FcCallback, FcHome } from "react-icons/fc";
+import { FcBullish, FcCallback, FcHome } from "react-icons/fc";
 import { LuLogOut } from "react-icons/lu";
 import { TiThMenu } from "react-icons/ti";
 import { Link, Outlet, useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ import { FaSheetPlastic } from "react-icons/fa6";
 const Drawer = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin] = UseAdmin();
-  const [isHR] = UseHr(); // Custom hook to check if the user is HR
+  const [isHR] = UseHr();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -74,15 +74,9 @@ const Drawer = () => {
                   </span>
                   <p>Employee List</p>
                 </Link>
-                <Link to="/dashboard/details" className="flex my-4">
-                  <span className="text-2xl pr-2">
-                    <FaDollarSign />
-                  </span>
-                  <p>Payment History</p>
-                </Link>
                 <Link to="/dashboard/progress" className="flex my-4">
                   <span className="text-2xl pr-2">
-                    <FaDollarSign />
+                  <FcBullish />
                   </span>
                   <p>Progress</p>
                 </Link>

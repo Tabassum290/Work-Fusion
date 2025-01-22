@@ -61,9 +61,10 @@ const Register = () => {
             name: name,
             email: email.toLowerCase(),
             bank: bank,
-            role: role,
+            role: role.toLowerCase(),
             salary: parseInt(salary),
             image: imageUrl,
+            isVerified:false,
             designation : designation
           };
           const response = await axiosPublic.post("/users", userInfo);
@@ -97,6 +98,7 @@ const Register = () => {
                 designation:"Marketer",
                 image:result.user?.photoURL,
                 role:"employee",
+                isVerified:false,
             }
             axiosPublic.post('/users',userInfo)
             .then(res=>{
@@ -119,7 +121,8 @@ const handleGithub = () =>{
             role:"employee",
             designation:"Marketer",
             salary: parseInt(20000),
-            image:result.user?.photoURL
+            image:result.user?.photoURL,
+            isVerified:false,
         }
         axiosPublic.post('/users',userInfo)
         .then(res=>{
@@ -147,8 +150,8 @@ const handleGithub = () =>{
       <option value="" selected>
         Choose a Role
       </option>
-      <option value="Employee">Employee</option>
-      <option value="HR">HR</option>
+      <option value="employee">Employee</option>
+      <option value="hr">HR</option>
     </select>
   </div>
 		<div className="space-y-1 text-sm">
