@@ -83,6 +83,7 @@ const Register = () => {
           }
         } catch (error) {
           console.error("Error during sign-up process:", error);
+          toast.error("Please give valid information")
         }
       };
       

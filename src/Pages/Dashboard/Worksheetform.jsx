@@ -19,7 +19,8 @@ const Worksheetform = () => {
         task: data.tasks,
         hours: data.hours,
         date: data.date,
-        email: user.email, 
+        email: user.email,
+        name:user.displayName, 
       };
       console.log('Submitting workInfo:', workInfo);
       const res = await axiosSecure.post('/works',workInfo)

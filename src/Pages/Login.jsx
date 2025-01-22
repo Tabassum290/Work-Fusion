@@ -8,12 +8,13 @@ import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2';
 import UseAxiosPublic from '../Hooks/UseAxiosPublic';
 import { FcGoogle } from "react-icons/fc";
+import { toast } from "react-toastify";
 
 const Login = () => {
     const {setUser,LoginUser,googleProvider,signInWithGitHub} = useContext(AuthContext);
     const navigate = useNavigate()
     const axiosPublic = UseAxiosPublic();
-
+   const [err,setErr] = useState('');
     
     const handleLogin = (e) =>{
         e.preventDefault();
@@ -28,7 +29,8 @@ const Login = () => {
             Swal.fire("Login Successfull", "Welcome back to Work Fusion!","success");
         })
         .catch(err=>{
-            console.log(err)
+            console.log(err);
+			toast.error('Please input correct email and password')
         })
     
     }
@@ -127,7 +129,7 @@ const handleGithub = () =>{
 		</button>
 	</div>
 	<p className="text-xs text-center sm:px-6 dark:text-gray-600">Don't have an account?
-		<a rel="noopener noreferrer" href="#" className="underline dark:text-gray-800">Sign up</a>
+		<a rel="noopener noreferrer" href="/register" className="underline dark:text-gray-800">Sign up</a>
 	</p>
 </div>
             </section>
