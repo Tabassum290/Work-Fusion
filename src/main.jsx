@@ -24,6 +24,7 @@ import PaymentHistory from './Pages/Dashboard/PaymentHistory';
 import Worksheet from './Pages/Dashboard/Worksheet';
 import Details from './Pages/Dashboard/Details';
 import Progress from './Pages/Dashboard/Progress';
+import Payment from './Components/Payment';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path:'payroll',
         element:<AdminRoute><Payroll/></AdminRoute>
+      },
+      {
+        path:'payment/:id',
+        element:<AdminRoute><Payment/></AdminRoute>
       },
       {
         path:'employee-list',
