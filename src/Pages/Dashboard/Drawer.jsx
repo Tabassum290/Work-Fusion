@@ -7,7 +7,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 import { FaDollarSign, FaUsers } from "react-icons/fa";
 import UseAdmin from "../../Hooks/UseAdmin";
 import UseHr from "../../Hooks/UseHr";
-import { FaSheetPlastic } from "react-icons/fa6";
+import { FaMessage, FaSheetPlastic } from "react-icons/fa6";
 
 const Drawer = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -64,6 +64,12 @@ const Drawer = () => {
                     <FaDollarSign />
                   </span>
                   <p>Payroll</p>
+                </Link>
+                <Link to="/dashboard/message" className="flex my-4">
+                  <span className="text-2xl pr-2">
+                    <FaMessage/>
+                  </span>
+                  <p>Messages</p>
                 </Link>
               </>
             ) : isHR ? (

@@ -4,10 +4,11 @@ import Footer from '../Components/Footer';
 import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { IoLogoTwitter } from 'react-icons/io';
 import UseAxiosPublic from '../Hooks/UseAxiosPublic';
+import { useNavigate } from 'react-router-dom';
 
 const Contacts = () => {
   const axiosPublic = UseAxiosPublic()
-
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -23,7 +24,7 @@ const Contacts = () => {
   
     try {
       const res = await axiosPublic.post('/contact', info);
-      console.log(res.data);
+      navigate('/')
     } catch (error) {
       console.error('Error sending message:', error);
     }
