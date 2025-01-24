@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
 
 const Progress = () => {
   const axiosPublic = UseAxiosPublic();
-
   const [selectedEmployee, setSelectedEmployee] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
 
-  // Fetch works data
+
   const { data: works = [] } = useQuery({
     queryKey: ['works'],
     queryFn: async () => {
@@ -17,7 +16,6 @@ const Progress = () => {
     },
   });
 
-  // Extract unique months from works
   const uniqueMonths = Array.from(
     new Set(
       works.map((work) => {
@@ -26,8 +24,6 @@ const Progress = () => {
       })
     )
   );
-
-  // Filter works based on selected employee and month
   const filteredWorks = works.filter((work) => {
     const employeeMatch = selectedEmployee ? work.name === selectedEmployee : true;
     const monthMatch = selectedMonth
@@ -42,9 +38,7 @@ const Progress = () => {
         Work Records: {filteredWorks.length}
       </h1>
 
-      {/* Filters */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-        {/* Employee Filter */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Select Employee:
@@ -62,8 +56,6 @@ const Progress = () => {
             ))}
           </select>
         </div>
-
-        {/* Month Filter */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Select Month:
@@ -83,7 +75,6 @@ const Progress = () => {
         </div>
       </div>
 
-      {/* Responsive Table */}
       <div className="overflow-x-auto shadow-md rounded-lg">
         <table className="w-full border-collapse bg-white">
           <thead className="bg-blue-700 text-white">

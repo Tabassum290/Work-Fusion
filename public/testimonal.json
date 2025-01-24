@@ -1,0 +1,33 @@
+{
+    "testimonials": [
+      {
+        "id": 1,
+        "name": "John Smith",
+        "designation": "Software Engineer",
+        "photo": "https://randomuser.me/api/portraits/men/32.jpg",
+        "feedback": "WorkFusion has completely streamlined our workflow. The intuitive interface and task management system have boosted our productivity significantly!"
+      },
+      {
+        "id": 2,
+        "name": "Emily Johnson",
+        "designation": "HR Manager",
+        "photo": "https://randomuser.me/api/portraits/women/45.jpg",
+        "feedback": "I love how WorkFusion simplifies salary management and employee monitoring. It saves us so much time and effort!"
+      },
+      {
+        "id": 3,
+        "name": "Michael Brown",
+        "designation": "Team Lead",
+        "photo": "https://randomuser.me/api/portraits/men/55.jpg",
+        "feedback": "This platform is a game-changer for managing employee progress and ensuring timely payments. Highly recommend it!"
+      },
+      {
+        "id": 4,
+        "name": "Sarah Davis",
+        "designation": "Content Strategist",
+        "photo": "https://randomuser.me/api/portraits/women/33.jpg",
+        "feedback": "WorkFusion is user-friendly and offers powerful features to keep everything organized. It's a must-have for modern businesses."
+      }
+    ]
+  }
+  

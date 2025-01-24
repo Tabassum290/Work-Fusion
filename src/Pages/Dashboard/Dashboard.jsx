@@ -8,8 +8,6 @@ const Dashboard = () => {
 <Drawer/>
 <Footer/>
 
-
-
         </div>
     );
 };

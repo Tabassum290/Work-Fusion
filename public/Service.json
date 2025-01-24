@@ -1,0 +1,65 @@
+{
+    "services": [
+      {
+        "id": 1,
+        "title": "Workflow Management",
+        "description": "Streamline your tasks and improve efficiency with our intuitive workflow management tools.",
+        "icon": "https://img.icons8.com/ios-filled/50/task.png"
+      },
+      {
+        "id": 2,
+        "title": "Employee Monitoring",
+        "description": "Track employee performance and manage progress in real time with detailed analytics.",
+        "icon": "https://img.icons8.com/ios-filled/50/employee.png"
+      },
+      {
+        "id": 3,
+        "title": "Salary Management",
+        "description": "Simplify salary distribution and keep track of monthly payments effortlessly.",
+        "icon": "https://img.icons8.com/ios-filled/50/money.png"
+      },
+      {
+        "id": 4,
+        "title": "HR Tools",
+        "description": "Advanced tools for HR executives to verify employees, manage payroll, and more.",
+        "icon": "https://img.icons8.com/ios-filled/50/hr.png"
+      },
+      {
+        "id": 5,
+        "title": "Secure Authentication",
+        "description": "Ensure secure access with email/password authentication and role-based authorization.",
+        "icon": "https://img.icons8.com/ios-filled/50/lock.png"
+      },
+      {
+        "id": 6,
+        "title": "Task Reporting",
+        "description": "Employees can submit detailed task reports to keep the workflow transparent and organized.",
+        "icon": "https://img.icons8.com/ios-filled/50/report-card.png"
+      },
+      {
+        "id": 7,
+        "title": "Real-Time Notifications",
+        "description": "Stay updated with instant notifications for task updates, approvals, and more.",
+        "icon": "https://img.icons8.com/ios-filled/50/appointment-reminders.png"
+      },
+      {
+        "id": 8,
+        "title": "Customizable Dashboard",
+        "description": "Personalize your dashboard to view the most relevant data at a glance.",
+        "icon": "https://img.icons8.com/ios-filled/50/dashboard-layout.png"
+      },
+      {
+        "id": 9,
+        "title": "Role-Based Access Control",
+        "description": "Ensure data security with role-based access tailored for employees, HR, and admins.",
+        "icon": "https://img.icons8.com/ios-filled/50/security-configuration.png"
+      },
+      {
+        "id": 10,
+        "title": "Data Analytics",
+        "description": "Generate insightful reports to monitor progress and make informed decisions.",
+        "icon": "https://img.icons8.com/ios-filled/50/bar-chart.png"
+      }
+    ]
+  }
+  

@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecret from "../../Hooks/UseAxiosSecret";
-import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const Payroll = () => {

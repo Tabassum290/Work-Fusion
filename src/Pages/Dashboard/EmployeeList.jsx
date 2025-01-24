@@ -6,6 +6,7 @@ import { ImCross } from 'react-icons/im';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
+import { Toast } from 'flowbite-react';
 
 const EmployeeList = () => {
   const { user } = useContext(AuthContext); 
@@ -35,19 +36,19 @@ const EmployeeList = () => {
     setModalData({ month: '', year: '' });
   };
 
-
   const closeModal = () => {
     setSelectedEmployee(null);
   };
 
   const handleSubmitPayment = async () => {
     if (!modalData.month || !modalData.year) {
-      alert('Please fill in all fields.');
+      Toast.error('Please fill in all fields.');
       return;
     }
 
     try {
       const paymentRequest = {
+        email:selectedEmployee.email,
         employeeId: selectedEmployee._id,
         name: selectedEmployee.name,
         salary: selectedEmployee.salary,
@@ -66,10 +67,8 @@ const EmployeeList = () => {
     }
   };
 
-
-
   return (
-    <div>
+    <div className="w-full px-4 lg:px-8">
       <div className="overflow-x-auto my-12">
         <table className="table w-full">
           <thead className="bg-blue-600 text-white">
@@ -88,10 +87,10 @@ const EmployeeList = () => {
             {users.map((user, index) => (
               <tr key={user._id} className="hover:bg-gray-100">
                 <th>{index + 1}</th>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.bank}</td>
-                <td>{user.salary}</td>
+                <td className="max-w-xs sm:max-w-sm">{user.name}</td>
+                <td className="max-w-xs sm:max-w-sm">{user.email}</td>
+                <td className="max-w-xs sm:max-w-sm">{user.bank}</td>
+                <td className="max-w-xs sm:max-w-sm">{user.salary}</td>
                 <td>
                   <button
                     onClick={() => handleToggle(user._id)}
@@ -102,9 +101,7 @@ const EmployeeList = () => {
                 </td>
                 <td>
                    <button
-                    className={`btn ${
-                      user.isVerified ? 'bg-green-600' : 'bg-gray-300 cursor-not-allowed'
-                    } text-white btn-sm`}
+                    className={`btn ${user.isVerified ? 'bg-green-600' : 'bg-gray-300 cursor-not-allowed'} text-white btn-sm`}
                     disabled={!user.isVerified} 
                     onClick={() => openModal(user)} 
                   >
@@ -114,7 +111,6 @@ const EmployeeList = () => {
                 <td>
                   <Link to={`/dashboard/details/${user._id}`}
                     className="btn bg-red-600 text-white btn-sm"
-                   
                   >
                     Details
                   </Link>
@@ -124,9 +120,11 @@ const EmployeeList = () => {
           </tbody>
         </table>
       </div>
+
+
       {selectedEmployee && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg p-8 w-96">
+          <div className="bg-white rounded-lg p-8 w-full max-w-md sm:max-w-xs">
             <h2 className="text-xl font-bold mb-4">Payment Request</h2>
             <p className="mb-4">
               <strong>Employee Name:</strong> {selectedEmployee.name}

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FcBullish, FcCallback, FcHome } from "react-icons/fc";
 import { LuLogOut } from "react-icons/lu";
 import { TiThMenu } from "react-icons/ti";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaDollarSign, FaUsers } from "react-icons/fa";
 import UseAdmin from "../../Hooks/UseAdmin";
@@ -89,7 +89,7 @@ const Drawer = () => {
                   </span>
                   <p>Work Sheet</p>
                 </Link>
-                <Link to="/dashboard/paymenthistory" className="flex my-4">
+                <Link to='/dashboard/paymenthistory' className="flex my-4">
                   <span className="text-2xl pr-2">
                     <FaDollarSign />
                   </span>

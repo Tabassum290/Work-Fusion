@@ -8,10 +8,10 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 
 const CheckoutForm = () => {
+  const {user} = useContext(AuthContext);
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [salary, setSalary] = useState(0);
-  const { user } = useContext(AuthContext);
   const stripe = useStripe();
   const elements = useElements();
   const axiosSecure = UseAxiosSecret();
@@ -19,6 +19,7 @@ const CheckoutForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
+  // Fetch payroll data for the employee
   const { data: payroll = [] } = useQuery({
     queryKey: ["payroll", id],
     queryFn: async () => {
@@ -27,12 +28,14 @@ const CheckoutForm = () => {
     },
   });
 
+  // Set salary from payroll data
   useEffect(() => {
     if (payroll.length > 0) {
       setSalary(payroll[0]?.salary || 0);
     }
   }, [payroll]);
 
+  // Create client secret for payment
   useEffect(() => {
     if (salary > 0) {
       axiosSecure.post("/payment", { salary }).then((res) => {
@@ -65,8 +68,8 @@ const CheckoutForm = () => {
       payment_method: {
         card: card,
         billing_details: {
-          email: user?.email || "Anonymous",
-          name: user?.displayName || "Anonymous",
+          email: user?.email || "Anonymous", // Employee's email from payroll
+          name: user?.displayName || "Anonymous", // Employee's name (if available in payroll)
         },
       },
     });
@@ -78,7 +81,7 @@ const CheckoutForm = () => {
 
     if (paymentIntent.status === "succeeded") {
       const payment = {
-        email: user.email,
+        email: payroll[0]?.email || "Anonymous", // Employee's email
         date: new Date().toLocaleString(),
         transactionId: paymentIntent.id,
         salary: salary,
@@ -97,8 +100,15 @@ const CheckoutForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <CardElement options={{ style: { base: { fontSize: "16px", color: "#424770" } } }} />
-        <button className="btn bg-blue-700 mt-6 text-white" disabled={!stripe || !clientSecret || salary === 0}>
+        <CardElement
+          options={{
+            style: { base: { fontSize: "16px", color: "#424770" } },
+          }}
+        />
+        <button
+          className="btn bg-blue-700 mt-6 text-white"
+          disabled={!stripe || !clientSecret || salary === 0}
+        >
           Pay ${salary}
         </button>
         {error && <p className="text-red-600">{error}</p>}
@@ -108,4 +118,3 @@ const CheckoutForm = () => {
 };
 
 export default CheckoutForm;
-
