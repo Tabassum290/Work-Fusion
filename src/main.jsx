@@ -55,15 +55,15 @@ const router = createBrowserRouter([
       },
       {
         path:'employee-list',
-        element:<EmployeeList/>
+        element:<PrivateRoute><EmployeeList/></PrivateRoute>
       },
       {
         path:'paymenthistory',
-        element:<PaymentHistory/>,
+        element:<PrivateRoute><PaymentHistory/></PrivateRoute>,
       },
       {
         path:'worksheet',
-        element:<Worksheet/>
+        element:<PrivateRoute><Worksheet/></PrivateRoute>,
       },
       {
         path:'details/:id',
@@ -71,7 +71,7 @@ const router = createBrowserRouter([
       },
       {
         path:'progress',
-        element:<Progress/>
+        element:<PrivateRoute><Progress/></PrivateRoute>
       },
     ])
   },

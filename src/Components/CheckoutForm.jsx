@@ -19,23 +19,21 @@ const CheckoutForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // Fetch payroll data for the employee
   const { data: payroll = [] } = useQuery({
     queryKey: ["payroll", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payroll/${id}`);
+      console.log(res.data)
       return res.data;
     },
   });
 
-  // Set salary from payroll data
   useEffect(() => {
     if (payroll.length > 0) {
       setSalary(payroll[0]?.salary || 0);
     }
   }, [payroll]);
 
-  // Create client secret for payment
   useEffect(() => {
     if (salary > 0) {
       axiosSecure.post("/payment", { salary }).then((res) => {
@@ -68,8 +66,8 @@ const CheckoutForm = () => {
       payment_method: {
         card: card,
         billing_details: {
-          email: user?.email || "Anonymous", // Employee's email from payroll
-          name: user?.displayName || "Anonymous", // Employee's name (if available in payroll)
+          email: user?.email || "Anonymous",
+          name: user?.displayName || "Anonymous",
         },
       },
     });
@@ -81,7 +79,7 @@ const CheckoutForm = () => {
 
     if (paymentIntent.status === "succeeded") {
       const payment = {
-        email: payroll[0]?.email || "Anonymous", // Employee's email
+        email: payroll[0]?.email || "Anonymous", 
         date: new Date().toLocaleString(),
         transactionId: paymentIntent.id,
         salary: salary,
@@ -89,7 +87,7 @@ const CheckoutForm = () => {
         employeeId: payroll[0]?.employeeId,
         status: "Paid",
       };
-
+console.log(payment)
       await axiosPublic.post("/payments", payment);
 
       Swal.fire("Payment Successful!", `Transaction ID: ${paymentIntent.id}`, "success");

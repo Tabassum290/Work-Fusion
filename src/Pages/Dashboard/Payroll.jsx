@@ -18,7 +18,7 @@ const Payroll = () => {
       <h1 className="text-2xl font-bold mb-4">Payroll Management</h1>
       <div className="overflow-x-auto">
         <table className="table w-full">
-          <thead>
+          <thead className="bg-blue-600 text-white">
             <tr>
               <th>#</th>
               <th>Name</th>

@@ -3,16 +3,32 @@ import CustomNavbar from '../Components/CustomNavbar';
 import Footer from '../Components/Footer';
 import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { IoLogoTwitter } from 'react-icons/io';
+import UseAxiosPublic from '../Hooks/UseAxiosPublic';
 
 const Contacts = () => {
-    const handleSubmit = e =>{
-        e.preventDefault();
-        const name = e.target.name.value;
-        const email=e.target.email.value;
-        const message = e.target.message.value;
-        const info = {name,email,message}
-        console.log(info)
+  const axiosPublic = UseAxiosPublic()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const message = e.target.message.value;
+  
+    const info = {
+      name: name,
+      email: email,
+      message: message,
+    };
+    console.log(info);
+  
+    try {
+      const res = await axiosPublic.post('/contact', info);
+      console.log(res.data);
+    } catch (error) {
+      console.error('Error sending message:', error);
     }
+  };
+  
     return (
         <div>
             <CustomNavbar/>
