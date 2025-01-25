@@ -9,8 +9,6 @@ const AdminRoute = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
 
-  console.log("Loading States:", { loading, isAdminLoading });
-
   if (loading || isAdminLoading) {
     return <Loader />;
   }
