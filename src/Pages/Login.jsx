@@ -1,6 +1,6 @@
 import CustomNavbar from "../Components/CustomNavbar";
 import Footer from "../Components/Footer";
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +30,11 @@ const Login = () => {
         })
         .catch(err=>{
             console.log(err);
-			toast.error('Please input correct email and password')
+			if (err.response && err.response.status === 403) {
+				toast.error('Your account has been fired. You cannot log in.');
+			} else {
+				toast.error('Please input correct email and password.');
+			}
         })
     
     }

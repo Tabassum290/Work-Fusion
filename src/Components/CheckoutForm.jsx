@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "../Hooks/UseAxiosPublic";
 
 const CheckoutForm = () => {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [error, setError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const [salary, setSalary] = useState(0);
@@ -23,7 +23,6 @@ const CheckoutForm = () => {
     queryKey: ["payroll", id],
     queryFn: async () => {
       const res = await axiosSecure.get(`/payroll/${id}`);
-      console.log(res.data)
       return res.data;
     },
   });
@@ -79,7 +78,7 @@ const CheckoutForm = () => {
 
     if (paymentIntent.status === "succeeded") {
       const payment = {
-        email: payroll[0]?.email || "Anonymous", 
+        email: payroll[0]?.email || "Anonymous",
         date: new Date().toLocaleString(),
         transactionId: paymentIntent.id,
         salary: salary,
@@ -87,7 +86,7 @@ const CheckoutForm = () => {
         employeeId: payroll[0]?.employeeId,
         status: "Paid",
       };
-console.log(payment)
+
       await axiosPublic.post("/payments", payment);
 
       Swal.fire("Payment Successful!", `Transaction ID: ${paymentIntent.id}`, "success");
@@ -96,21 +95,31 @@ console.log(payment)
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: { base: { fontSize: "16px", color: "#424770" } },
-          }}
-        />
-        <button
-          className="btn bg-blue-700 mt-6 text-white"
-          disabled={!stripe || !clientSecret || salary === 0}
-        >
-          Pay ${salary}
-        </button>
-        {error && <p className="text-red-600">{error}</p>}
-      </form>
+    <div className="flex justify-center items-center w-full px-4">
+      <div className="bg-white shadow-lg rounded-lg p-6 max-w-md w-full">
+        <form onSubmit={handleSubmit}>
+          <CardElement
+            options={{
+              style: {
+                base: {
+                  fontSize: "16px",
+                  color: "#424770",
+                  "::placeholder": { color: "#aab7c4" },
+                },
+                invalid: { color: "#9e2146" },
+              },
+            }}
+            className="p-3 border border-gray-300 rounded-md"
+          />
+          <button
+            className="btn bg-blue-700 mt-6 text-white w-full py-2 rounded-md hover:bg-blue-800 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            disabled={!stripe || !clientSecret || salary === 0}
+          >
+            Pay ${salary}
+          </button>
+          {error && <p className="text-red-600 mt-4">{error}</p>}
+        </form>
+      </div>
     </div>
   );
 };

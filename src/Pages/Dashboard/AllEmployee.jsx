@@ -121,7 +121,7 @@ const AllEmployee = () => {
                   <td>
                     {user.role === "admin" ? (
                       <span className="text-gray-500">Cannot fire Admin</span>
-                    ) : user.isFired ? (
+                    ) : user.role == 'fired' ? (
                       <span className="text-red-500">Fired</span>
                     ) : (
                       <button
@@ -172,18 +172,13 @@ const AllEmployee = () => {
                     Make HR
                   </button>
                 )}
-                {user.role === "admin" ? (
-                  <span className="text-gray-500">Cannot fire Admin</span>
-                ) : user.isFired ? (
-                  <span className="text-red-500">Fired</span>
-                ) : (
-                  <button
-                    onClick={() => handleFire(user)}
-                    className="btn btn-sm bg-red-500 text-white"
-                  >
-                    Fire
-                  </button>
-                )}
+{user?.role === "admin" && (<span>Cannot Fire Admin</span>)}
+{user?.role === "fired" ? (
+  <span>Cannot Fire</span>
+) : (
+  <span>Fire</span>
+)}
+
               </div>
             </div>
           ))}

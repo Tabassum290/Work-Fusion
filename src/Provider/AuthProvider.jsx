@@ -27,7 +27,6 @@ const LoginUser = (email,password)=>{
 }
 
 const profileUpdate = (name,photo)=>{
-    console.log("Updating profile with name:", name, "and photo:", photo);
  return  updateProfile(auth.currentUser,{
         displayName:name,photoURL:photo
     })
