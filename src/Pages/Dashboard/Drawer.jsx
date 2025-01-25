@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { FcBullish, FcCallback, FcHome } from "react-icons/fc";
 import { LuLogOut } from "react-icons/lu";
 import { TiThMenu } from "react-icons/ti";
-import { Link, Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { Link, Outlet, useNavigate} from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { FaDollarSign, FaUsers } from "react-icons/fa";
 import UseAdmin from "../../Hooks/UseAdmin";
@@ -15,10 +15,10 @@ const Drawer = () => {
   const [isHR] = UseHr();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
+const handleLogout = () => {
     logOut();
     navigate("/");
-  };
+};
 
   return (
     <div>

@@ -3,9 +3,10 @@ import UseWork from "../../Hooks/UseWork";
 import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
 
 const WorksheetTable = () => {
-const[works,refetch] = UseWork();
-const axiosPublic = UseAxiosPublic()
-const handleDelete = async (workId) => {
+  const [works, refetch] = UseWork();
+  const axiosPublic = UseAxiosPublic();
+
+  const handleDelete = async (workId) => {
     Swal.fire({
       title: "Are you sure?",
       text: "This action will permanently delete the work entry.",
@@ -18,6 +19,7 @@ const handleDelete = async (workId) => {
       if (result.isConfirmed) {
         try {
           await axiosPublic.delete(`/works/${workId}`);
+          const updatedWorks = works.filter(work => work._id !== workId);
           refetch();
           Swal.fire({
             title: "Deleted!",
@@ -62,26 +64,27 @@ const handleDelete = async (workId) => {
       focusConfirm: false,
       showCancelButton: true,
       preConfirm: () => {
-
         const task = document.getElementById('task').value;
-        const hours= document.getElementById('hours').value;
+        const hours = document.getElementById('hours').value;
         const date = document.getElementById('date').value;
-         if (!task || !hours|| !date) {
+        if (!task || !hours || !date) {
           Swal.showValidationMessage("Please fill all the fields.");
           return false;
         }
-
         return { task, hours, date };
       },
       confirmButtonText: 'Submit Changes',
     });
-  
+
     if (formData) {
       const { task, hours, date } = formData;
-  
+
       try {
         await axiosPublic.put(`/works/${workId}`, { task, hours, date });
-        refetch(); 
+        const updatedWorks = works.map(work =>
+          work._id === workId ? { ...work, task, hours, date } : work
+        );
+        refetch();
         Swal.fire("Success!", "Work entry has been updated.", "success");
       } catch (error) {
         console.error("Error updating the work entry", error);
@@ -89,43 +92,41 @@ const handleDelete = async (workId) => {
       }
     }
   };
-  
 
-
-    return (
-        <div>
-              <div className="overflow-x-auto my-12">
-          <table className="table w-full">
-            <thead className="bg-blue-600 text-white">
-              <tr>
-                <th className="p-4">#</th>
-                <th className="p-4">Task</th>
-                <th className="p-4">Working Hour</th>
-                <th className="p-4">Date</th>
-                <th className="p-4">Action</th>
-                <th className="p-4">Action</th>
+  return (
+    <div>
+      <div className="overflow-x-auto my-12">
+        <table className="table w-full">
+          <thead className="bg-blue-600 text-white">
+            <tr>
+              <th className="p-4">#</th>
+              <th className="p-4">Task</th>
+              <th className="p-4">Working Hour</th>
+              <th className="p-4">Date</th>
+              <th className="p-4">Action</th>
+              <th className="p-4">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {works.map((work, index) => (
+              <tr key={work._id} className="hover:bg-gray-100">
+                <th>{index + 1}</th>
+                <td>{work.task}</td>
+                <td>{work.hours}</td>
+                <td>{new Date(work.date).toLocaleString()}</td>
+                <td>
+                  <button onClick={() => handleEdit(work._id)} className="btn bg-green-600 text-white btn-sm">Edit</button>
+                </td>
+                <td>
+                  <button onClick={() => handleDelete(work._id)} className="btn bg-red-600 text-white btn-sm">Delete</button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {works.map((work, index) => (
-                <tr key={work._id} className="hover:bg-gray-100">
-                  <th>{index + 1}</th>
-                  <td>{work.task}</td>
-                  <td>{work.hours}</td>
-                  <td>{new Date(work.date).toLocaleString()}</td>
-                  <td>
-                    <button onClick={() => handleEdit(work._id)} className="btn bg-green-600 text-white btn-sm">Edit</button>
-                  </td>
-                  <td>
-                    <button onClick={() => handleDelete(work._id)} className="btn bg-red-600 text-white btn-sm">Delete</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        </div>
-    );
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
 };
 
 export default WorksheetTable;

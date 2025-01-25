@@ -20,11 +20,9 @@ const Login = () => {
         e.preventDefault();
         const email = e.target.email.value;
         const password=e.target.password.value;
-       console.log(email,password)
         LoginUser(email,password)
         .then(result =>{
-            console.log(result);
-            setUser(result);
+            // setUser(result.user);
             navigate('/')
             Swal.fire("Login Successfull", "Welcome back to Work Fusion!","success");
         })

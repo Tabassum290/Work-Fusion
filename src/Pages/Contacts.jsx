@@ -20,8 +20,6 @@ const Contacts = () => {
       email: email,
       message: message,
     };
-    console.log(info);
-  
     try {
       const res = await axiosPublic.post('/contact', info);
       navigate('/')

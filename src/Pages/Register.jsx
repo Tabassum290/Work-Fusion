@@ -1,4 +1,3 @@
-
 import CustomNavbar from '../Components/CustomNavbar';
 import Footer from '../Components/Footer';
 import { useContext, useState } from 'react';
@@ -51,10 +50,8 @@ const Register = () => {
           );
       
           const imageUrl = imageResponse.data.data.url;
-      
-          console.log("Uploaded image URL:", imageUrl);
+    
           const result = await createNewUser(email, password);
-          console.log("User created:", result.user);
           await profileUpdate(name, imageUrl);
       
           const userInfo = {
@@ -76,7 +73,6 @@ const Register = () => {
               photoURL: imageUrl,
             };
       
-            console.log("Updated user info:", updatedUser);
             setUser(updatedUser);
             navigate("/");
             Swal.fire("Registration Successful", "Welcome to Work Fusion!", "success");

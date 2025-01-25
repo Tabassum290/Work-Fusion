@@ -7,7 +7,6 @@ const {data : contacts = []} = useQuery({
     queryKey:['contact'],
     queryFn:async() =>{
         const res = await axiosPublic.get('/contact')
-        console.log(res.data)
         return res.data;
     }
 })

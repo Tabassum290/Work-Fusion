@@ -37,14 +37,15 @@ const googleProvider =()=>{
     return signInWithPopup(auth,provider);
 }
 
-const signInWithGitHub =() => {
+const signInWithGitHub = () => {
    return signInWithPopup(auth, gitProvider);
-  };
+   };
+  
 
 useEffect(()=>{
     const unSubscribe = onAuthStateChanged( auth,currentUser =>{
-        setUser(currentUser);
         if(currentUser){
+            setUser(currentUser);
             const userInfo = {email:currentUser.email}
             axiosPublic.post('/jwt',userInfo)
             .then(res=> {
@@ -56,6 +57,7 @@ useEffect(()=>{
         }else{
             localStorage.removeItem('access-token');
             setLoading(false);
+            setUser(false);
         }
 
 })
@@ -66,14 +68,14 @@ return unSubscribe();
 },[axiosPublic])
 
 const logOut = ()=>{
-    return signOut(auth);
+    return signOut(auth);   
 }
 
 const authInfo ={
     user,profileUpdate,googleProvider,signInWithGitHub,
     createNewUser,loading,setLoading,setUser,LoginUser,logOut,
 }
-    return (
+return (
 <AuthContext.Provider value={authInfo}>
     {children}
 </AuthContext.Provider>

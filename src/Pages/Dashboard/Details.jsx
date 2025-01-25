@@ -8,13 +8,12 @@ import Loader from '../../Components/Loader';
 
 const Details = () => {
   const { id } = useParams();
-  console.log(id)
+
   const axiosPublic = UseAxiosPublic();
   const { data: employee = [], isLoading, isError } = useQuery({
     queryKey: ['details', id],
     queryFn: async () => {
       const res = await axiosPublic.get(`/details/${id}`);
-      console.log(res.data)
       return res.data.employee; 
     },
   });

@@ -7,17 +7,16 @@ import { AuthContext } from "../Provider/AuthProvider";
 const UseWork = () => {
     const {user} = useContext(AuthContext)
     const axiosSecure = UseAxiosSecret();
-
+    
     const { data: works = [], refetch } = useQuery({
-        queryKey: ['works'],
+        queryKey: [user?.email,'works'],
         queryFn: async () => {
-          const res = await axiosSecure.get(`/works/${user.email}`);
-          console.log(res.data);
+          const res = await axiosSecure.get(`/works/${user?.email}`);
           return res.data;
         }
       });
       
-      return [works,refetch]
+return [works,refetch]
 };
 
 export default UseWork;
