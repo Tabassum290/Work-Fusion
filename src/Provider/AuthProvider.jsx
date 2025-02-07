@@ -58,6 +58,7 @@ useEffect(()=>{
             localStorage.removeItem('access-token');
             setLoading(false);
             setUser(false);
+            
         }
 
 })
