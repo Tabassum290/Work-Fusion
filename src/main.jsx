@@ -26,6 +26,7 @@ import Details from './Pages/Dashboard/Details';
 import Progress from './Pages/Dashboard/Progress';
 import Payment from './Components/Payment';
 import Messages from './Components/Messages';
+import About from './Pages/About';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path:'/contacts',
     element:<Contacts/>
+  },
+  {
+    path:'/about',
+    element:<About/>
   },
   {
     path:'/dashboard',

@@ -5,7 +5,7 @@ import { TiThMenu } from "react-icons/ti";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { LuLogOut } from "react-icons/lu";
-import { FcPhone } from "react-icons/fc";
+import { FcAbout, FcPhone } from "react-icons/fc";
 import { FaHome, FaList, FaUserCircle } from "react-icons/fa";
 
 const CustomNavbar = () => {
@@ -22,11 +22,13 @@ const handleLogout = () =>{
   <NavLink to='/'><span className="text-2xl pr-2"><FaHome /></span>Home</NavLink>
   <NavLink to='/dashboard'><span className="text-2xl pr-2"><FaList /></span>Dashboard</NavLink>
   <NavLink to='/contacts'><span className="text-2xl pr-2"><FcPhone /></span>Contacts</NavLink>
+  <NavLink to='/about'><span className="text-2xl pr-2"><FcAbout /></span>About Us</NavLink>
   <button onClick={handleLogout}><span className="text-2xl pr-2"><LuLogOut /></span>LogOut</button>
     </> : <>
   <NavLink to='/'>Home</NavLink>
   <NavLink to='/dashboard'>Dashboard</NavLink>
   <NavLink to='/contacts'>Contacts</NavLink>
+  <NavLink to='/about'>About Us</NavLink>
   <NavLink to='/login'>Login</NavLink>
   <NavLink to='/register'>Register</NavLink>
     </> 
