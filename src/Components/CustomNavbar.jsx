@@ -16,8 +16,6 @@ const handleLogout = () =>{
   navigate('/')
 }
 
-
-
   const links =<>
   {
     user? <>
@@ -36,17 +34,18 @@ const handleLogout = () =>{
 
   </>
     return (
-        <div className="sticky z-10 top-0 backdrop-blur">
-   <div className="navbar ">
+        <div className="sticky z-10 top-0 backdrop-blur w-full bg-[#578FCA]">
+<div className="max-w-7xl mx-auto">
+<div className="navbar ">
   <div className="flex-1">
   <img className="w-12 h-12" src={logo} alt="" />
-    <a className="btn btn-ghost text-3xl italic text-blue-700" >Work Fusion</a>
+    <a className="btn btn-ghost text-3xl italic text-white" >Work Fusion</a>
   </div>
   <div className="flex-none">
     <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
       
-        <div className="indicator text-2xl">
+        <div className="indicator text-2xl text-white">
         <TiThMenu />
         </div>
       </div>
@@ -75,6 +74,7 @@ const handleLogout = () =>{
 
     </div>
   </div>
+</div>
 </div>
         </div>
     );
