@@ -27,39 +27,49 @@ const ExtraSections = () => {
         <div>
             {/* Why Choose Us */}
             <section className="bg-gray-100 p-16">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
-          Why Choose <span className="text-blue-600">WorkFusion?</span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="card bg-white shadow-xl p-6 text-center">
-            <div className="text-5xl text-red-500 mb-4">🚀</div>
-            <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-              Streamlined Workflow
-            </h3>
-            <p className="text-gray-600">
-              Manage tasks, track progress, and boost team efficiency all in one place.
-            </p>
+            <div className="max-w-7xl mx-auto px-6 py-12">
+      <h2 className="text-5xl font-bold text-center mb-10">Why Employers Choose Us?</h2>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {[
+          {
+            title: "Find the Best Talent Fast",
+            description: "Access a global pool of skilled professionals with AI-powered job matching.",
+            icon: "👨‍💼",
+          },
+          {
+            title: "Streamlined Hiring Process",
+            description: "Post jobs, filter candidates, and hire efficiently with our smart hiring system.",
+            icon: "⚡",
+          },
+          {
+            title: "Cost-Effective Recruitment",
+            description: "Affordable plans, no hidden fees, and pay only for what you need.",
+            icon: "💰",
+          },
+          {
+            title: "Advanced Employee Management",
+            description: "Built-in HR tools for tracking applications, onboarding, and payroll.",
+            icon: "📊",
+          },
+          {
+            title: "Secure & Trusted Platform",
+            description: "Data encryption, GDPR compliance, and verified professionals.",
+            icon: "🔒",
+          },
+          {
+            title: "24/7 Dedicated Support",
+            description: "Expert assistance anytime for optimizing job posts and hiring strategies.",
+            icon: "📞",
+          },
+        ].map((item, index) => (
+          <div key={index} className="bg-gray-900 p-6 rounded-lg shadow-lg text-white hover:shadow-xl transition">
+            <div className="text-5xl">{item.icon}</div>
+            <h3 className="text-2xl font-semibold mt-4">{item.title}</h3>
+            <p className="text-gray-300 mt-2">{item.description}</p>
           </div>
-          <div className="card bg-white shadow-xl p-6 text-center">
-            <div className="text-5xl text-red-500 mb-4">🔒</div>
-            <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-              Secure Payments
-            </h3>
-            <p className="text-gray-600">
-              Seamless salary management with advanced security protocols.
-            </p>
-          </div>
-          <div className="card bg-white shadow-xl p-6 text-center">
-            <div className="text-5xl text-red-500 mb-4">📊</div>
-            <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-              Real-Time Insights
-            </h3>
-            <p className="text-gray-600">
-              Get detailed performance analytics to make better decisions.
-            </p>
-          </div>
-        </div>
+        ))}
+      </div>
       </div>
     </section>
 {/* Achivements */}

@@ -6,6 +6,7 @@ import ExtraSections from "../../Components/ExtraSections";
 import { Helmet } from "react-helmet-async";
 import Testimonals from "../../Components/testimonals";
 import Services from "../../Components/Services";
+import JobOffers from "./JobOffers";
 
 
 const Home = () => {
@@ -15,7 +16,8 @@ const Home = () => {
           <CustomNavbar/>
           <Slider/>
           <main className="max-w-7xl mx-auto my-8">
-            <Services/>
+            <JobOffers/>
+            {/* <Services/> */}
             <ExtraSections/>
           <Testimonals/>
           </main>
