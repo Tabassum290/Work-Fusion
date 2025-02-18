@@ -5,7 +5,7 @@
         "name": "John Smith",
         "designation": "Software Engineer",
         "photo": "https://randomuser.me/api/portraits/men/32.jpg",
-        "feedback": "WorkFusion has completely streamlined our workflow. The intuitive interface and task management system have boosted our productivity significantly!"
+        "feedback": "WorkFusion has completely streamlined our workflow. The task management system have boosted our productivity significantly!"
       },
       {
         "id": 2,
