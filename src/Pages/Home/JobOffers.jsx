@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import CustomNavbar from "../../Components/CustomNavbar";
+import Footer from "../../Components/Footer";
 
 const JobOffers = () => {
-  // Track application status for each job using an object
   const [appliedJobs, setAppliedJobs] = useState({});
 
   const handleApply = (index) => {
@@ -16,7 +17,7 @@ const JobOffers = () => {
       title: "Software Engineer",
       description: "Develop and maintain web applications using modern technologies.",
       salary: "$70,000 - $100,000 / year",
-      image: "https://i.ibb.co/N6FF9YT/programming-background.jpg",
+      image: "https://i.ibb.co.com/N6FF9YTj/programming-background-with-person-working-with-codes-computer-23-2150010130.jpg",
     },
     {
       title: "Digital Marketer",
@@ -51,7 +52,9 @@ const JobOffers = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-12">
+<div>
+<CustomNavbar/>
+<div className="max-w-7xl mx-auto px-6 py-12 ">
       <h2 className="lg:text-5xl text-3xl font-bold text-center mb-10 uppercase font-serif">
         Job Offers
       </h2>
@@ -65,9 +68,9 @@ const JobOffers = () => {
               className="h-64 bg-cover bg-center relative"
               style={{ backgroundImage: `url(${job.image})` }}
             ></div>
-            <div className="p-6 bg-gray-900 text-white">
-              <h3 className="text-2xl font-semibold mb-2">{job.title}</h3>
-              <p className="text-gray-300">{job.description}</p>
+            <div className="p-6 bg-gray-900 text-white  job">
+              <h3 className="text-2xl font-semibold mb-2 para">{job.title}</h3>
+              <p className="text-gray-300 para">{job.description}</p>
               <p className="text-lg font-medium mt-2 text-yellow-400">{job.salary}</p>
               <button
                 className="mt-4 inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-900 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
@@ -81,6 +84,9 @@ const JobOffers = () => {
         ))}
       </div>
     </div>
+    <Footer/>
+</div>
+
   );
 };
 

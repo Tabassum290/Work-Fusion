@@ -19,8 +19,6 @@
     "@tanstack/react-table": "^8.20.6",
     "axios": "^1.7.9",
     "firebase": "^11.2.0",
-    "flowbite": "^2.5.2",
-    "flowbite-react": "^0.10.2",
     "localforage": "^1.10.0",
     "match-sorter": "^8.0.0",
     "react": "^18.3.1",

@@ -4,10 +4,12 @@ import { LuLogOut } from "react-icons/lu";
 import { TiThMenu } from "react-icons/ti";
 import { Link, Outlet, useNavigate} from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
-import { FaDollarSign, FaUsers } from "react-icons/fa";
+import { FaDollarSign, FaUser, FaUsers } from "react-icons/fa";
 import UseAdmin from "../../Hooks/UseAdmin";
 import UseHr from "../../Hooks/UseHr";
 import { FaMessage, FaSheetPlastic } from "react-icons/fa6";
+import { CgProfile } from "react-icons/cg";
+import { ImStatsDots } from "react-icons/im";
 
 const Drawer = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -40,7 +42,7 @@ const handleLogout = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
-          <ul className="menu bg-base-200 text-xl min-h-full w-80 p-4">
+          <ul className="menu bg-base-200 text-black text-xl min-h-full w-80 p-4">
             <h1 className="text-3xl font-bold mb-6 italic">Work Fusion</h1>
             <div className="flex">
               <div tabIndex={0} role="button" className="btn btn-circle avatar mb-4">
@@ -53,6 +55,18 @@ const handleLogout = () => {
 
             {isAdmin ? (
               <>
+                  <Link to="/dashboard/overview" className="flex my-4">
+                  <span className="text-2xl pr-2">
+                  <ImStatsDots />
+                  </span>
+                  <p>Overview</p>
+                </Link>
+                 <Link to="/dashboard/profile" className="flex my-4">
+                  <span className="text-2xl pr-2">
+                  <CgProfile />
+                  </span>
+                  <p>Profile</p>
+                </Link>
                 <Link to="/dashboard/allusers" className="flex my-4">
                   <span className="text-2xl pr-2">
                     <FaUsers />
@@ -74,6 +88,18 @@ const handleLogout = () => {
               </>
             ) : isHR ? (
               <>
+              <Link to="/dashboard/overview" className="flex my-4">
+                  <span className="text-2xl pr-2">
+                  <ImStatsDots />
+                  </span>
+                  <p>Overview</p>
+                </Link>
+                 <Link to="/dashboard/profile" className="flex my-4">
+                  <span className="text-2xl pr-2">
+                  <CgProfile />
+                  </span>
+                  <p>Profile</p>
+                </Link>
                 <Link to="/dashboard/employee-list" className="flex my-4">
                   <span className="text-2xl pr-2">
                     <FaUsers />

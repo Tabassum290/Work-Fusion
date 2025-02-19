@@ -27,6 +27,9 @@ import Progress from './Pages/Dashboard/Progress';
 import Payment from './Components/Payment';
 import Messages from './Components/Messages';
 import About from './Pages/About';
+import Profile from './Pages/Profile';
+import Overview from './Pages/Dashboard/Overview';
+import JobOffers from './Pages/Home/JobOffers';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
@@ -42,6 +45,10 @@ const router = createBrowserRouter([
   {
     path:'/about',
     element:<About/>
+  },
+  {
+    path:'/joboffers',
+    element:<JobOffers/>
   },
   {
     path:'/dashboard',
@@ -82,6 +89,14 @@ const router = createBrowserRouter([
       {
         path:'progress',
         element:<PrivateRoute><Progress/></PrivateRoute>
+      },
+      {
+        path:'profile',
+        element:<PrivateRoute><Profile/></PrivateRoute>
+      },
+      {
+        path:'overview',
+        element:<PrivateRoute><Overview/></PrivateRoute>
       },
     ])
   },

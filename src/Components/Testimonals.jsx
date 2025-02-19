@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper/modules";
 import { useState } from "react";
 import { useEffect } from "react";
 import { FaStar } from "react-icons/fa";
@@ -17,25 +16,33 @@ const Testimonals = () => {
         })
     },[])
     return (
-        <div className="py-10 px-4 bg-white">
-        <h2 className="lg:text-5xl text-3xl font-bold text-center mb-6">What People Say</h2>
+        <div className="py-10 px-4">
+        <h2 className="lg:text-5xl text-3xl font-bold text-center mb-8">What People Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {testimonials.map((testimonial) => (
             <SwiperSlide key={testimonial.id}>
-              <div className="p-6 bg-gray-100 rounded-lg shadow-md">
+              <div className="p-6 bg-gray-100 rounded-lg shadow-md border">
+                <div className="flex justify-between">
+                  <div>
+                  <h3 className="font-bold text-lg text-black">{testimonial.name}</h3>
+                  <p className="text-sm text-gray-500">{testimonial.designation}</p>
+                  </div>
+
+              <div className="text-2xl text-yellow-500 flex">
+              <FaStar></FaStar>
+              <FaStar></FaStar>
+              <FaStar></FaStar>
+              <FaStar></FaStar>
+              <FaStar></FaStar>
+             </div>
+                </div>
+              
                 <p className="text-gray-700 mb-4 italic">"{testimonial.feedback}"</p>
               <div className="flex justify-between items-center">
              <div>
-             <h3 className="font-bold text-lg">{testimonial.name}</h3>
-             <p className="text-sm text-gray-500">{testimonial.designation}</p>
+             
              </div>
-             <div className="text-2xl text-yellow-500 flex">
-              <FaStar></FaStar>
-              <FaStar></FaStar>
-              <FaStar></FaStar>
-              <FaStar></FaStar>
-              <FaStar></FaStar>
-             </div>
+       
               </div>
               </div>
             </SwiperSlide>

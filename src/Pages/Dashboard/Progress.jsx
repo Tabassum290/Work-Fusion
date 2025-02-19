@@ -40,13 +40,13 @@ const Progress = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 mb-1 name">
             Select Employee:
           </label>
           <select
             value={selectedEmployee}
             onChange={(e) => setSelectedEmployee(e.target.value)}
-            className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300 text-black"
           >
             <option value="">All Employees</option>
             {works.map((emp) => (
@@ -57,13 +57,13 @@ const Progress = () => {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-gray-700 mb-1 name">
             Select Month:
           </label>
           <select
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(e.target.value)}
-            className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300"
+            className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300 text-black"
           >
             <option value="">All Months</option>
             {uniqueMonths.map((month, index) => (

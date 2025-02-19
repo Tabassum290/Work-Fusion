@@ -3,3 +3,24 @@
 @tailwind utilities;
 
 @import "flowbite";
+body {
+    @apply bg-white text-black;
+  }
+ .dark .para{
+    @apply text-black;
+  }
+.dark .name{
+    @apply text-white;
+  }
+  .dark .job{
+    @apply border-gray-400 bg-white;
+  }
+  .dark body {
+    @apply bg-gray-900 text-white;
+  }
+.dark .extra{
+  @apply bg-black
+}
+.dark all{
+   @apply text-black;
+}

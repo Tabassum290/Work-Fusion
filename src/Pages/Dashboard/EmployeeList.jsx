@@ -85,7 +85,7 @@ const EmployeeList = () => {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={user._id} className="hover:bg-gray-100">
+              <tr key={user._id} className="hover:bg-gray-100 hover:text-black">
                 <th>{index + 1}</th>
                 <td className="max-w-xs sm:max-w-sm">{user.name}</td>
                 <td className="max-w-xs sm:max-w-sm">{user.email}</td>

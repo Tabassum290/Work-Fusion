@@ -9,6 +9,7 @@ export default {
   theme: {
     extend: {}, // Extend theme if needed
   },
+  darkMode: 'class', 
   plugins: [
     require("daisyui"), // DaisyUI for pre-built UI components
     require("flowbite/plugin"), // Flowbite plugin
