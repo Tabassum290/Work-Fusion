@@ -5,7 +5,7 @@ import UseAxiosSecret from "../../Hooks/UseAxiosSecret";
 
 const PaymentHistory = () => {
   const { user } = useContext(AuthContext);
-  const axiosSecure = UseAxiosSecret();
+  const axiosSecure = UseAxiosSecret()
 
   const { data: payments = [] } = useQuery({
     queryKey: ["payments", user?.email],

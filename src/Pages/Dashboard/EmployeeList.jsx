@@ -6,7 +6,6 @@ import { ImCross } from 'react-icons/im';
 import { useQuery } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
-import { Toast } from 'flowbite-react';
 
 const EmployeeList = () => {
   const { user } = useContext(AuthContext); 
@@ -42,7 +41,7 @@ const EmployeeList = () => {
 
   const handleSubmitPayment = async () => {
     if (!modalData.month || !modalData.year) {
-      Toast.error('Please fill in all fields.');
+      ToastContainer.error('Please fill in all fields.');
       return;
     }
 

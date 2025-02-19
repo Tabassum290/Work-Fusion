@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "flowbite";
 body {
     @apply bg-white text-black;
   }
