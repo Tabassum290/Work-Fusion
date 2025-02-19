@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import { FcOk } from "react-icons/fc";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -10,6 +11,7 @@ const Profile = () => {
       fetch(`https://assignment-12-server-iota-steel.vercel.app/usersProfile/${user.email}`)
         .then((res) => res.json())
         .then((data) => {
+          console.log(data)
           setUserData(data);
         })
         .catch((error) => console.error("Error fetching user data:", error));
@@ -21,11 +23,21 @@ const Profile = () => {
       <h2 className="text-4xl font-bold text-center mb-6 text-black">Your Profile</h2>
       <div className="flex flex-col items-center">
         <img 
-          src={userData?.photo || "https://via.placeholder.com/150"} 
+          src={userData?.image|| "https://via.placeholder.com/150"} 
           alt="User Avatar" 
           className="w-32 h-32 rounded-full border-4 border-gray-300 shadow-lg"
         />
-        <h3 className="text-2xl font-semibold mt-4 text-black">{userData?.name || "No Name Provided"}</h3>
+<h3 className="text-2xl flex justify-center items-center font-semibold mt-4 text-black">
+  {userData?.name || "No Name Provided"}
+  <span
+    className="text-xl p-1"
+  >
+    {
+      userData?.isVerified ? <FcOk /> : " " 
+    }
+  </span>
+</h3>
+
         <p className="text-lg text-black">{user?.email || "No Email Provided"}</p>
       </div>
       <div className="mt-6 space-y-4 bg-gray-100 p-6 rounded-lg shadow-md">

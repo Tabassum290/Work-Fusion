@@ -22,7 +22,6 @@ const Login = () => {
         const password=e.target.password.value;
         LoginUser(email,password)
         .then(result =>{
-            // setUser(result.user);
             navigate('/')
             Swal.fire("Login Successfull", "Welcome back to Work Fusion!","success");
         })
@@ -45,7 +44,7 @@ const Login = () => {
                 name: result.user?.displayName,
                 bank: 4242424242424242,
                 salary:20000,
-                photo:result.user?.photoURL,
+                image:result.user?.photoURL,
 				role:'employee',
 				designation:"Marketer",
 				isVerified:false,
@@ -67,7 +66,7 @@ const handleGithub = () =>{
 			name: result.user?.displayName,
 			bank: 4242424242424242,
 			salary:20000,
-			photo:result.user?.photoURL,
+			image:result.user?.photoURL,
 			role:'employee',
 			designation:"Marketer",
 			isVerified:false,

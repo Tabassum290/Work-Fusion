@@ -28,8 +28,8 @@ import Payment from './Components/Payment';
 import Messages from './Components/Messages';
 import About from './Pages/About';
 import Profile from './Pages/Profile';
-import Overview from './Pages/Dashboard/Overview';
 import JobOffers from './Pages/Home/JobOffers';
+import Overview from './Pages/Overview/Overview';
 
 const queryClient = new QueryClient();
 const router = createBrowserRouter([

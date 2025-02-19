@@ -32,7 +32,7 @@ const PaymentHistory = () => {
           <tbody>
             {payments.length > 0 ? (
               payments.map((payment, index) => (
-                <tr key={payment._id} className="hover:bg-gray-100">
+                <tr key={payment._id} className="hover:bg-gray-100 hover:text-black">
                   <td>{index + 1}</td>
                   <td>{new Date(payment.date).toLocaleDateString()}</td>
                   <td>{payment.salary}</td>

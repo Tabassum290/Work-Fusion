@@ -1,25 +1,20 @@
 import { useContext } from "react";
 import logo from "../assets/logowork.png"
 import { TiThMenu } from "react-icons/ti";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Provider/AuthProvider";
 import { LuLogOut } from "react-icons/lu";
-import { FcAbout, FcPhone } from "react-icons/fc";
 import { FaHome, FaList, FaPhone, FaUserCircle } from "react-icons/fa";
 import { RiHandbagFill } from "react-icons/ri";
-import UseAdmin from "../Hooks/UseAdmin";
-import UseHr from "../Hooks/UseHr";
 import { FaAddressBook } from "react-icons/fa6";
 import Theme from "./Theme";
 
 const CustomNavbar = () => {
   const {user,logOut} = useContext(AuthContext);
-  const [isAdmin] = UseAdmin();
-  const [isHR] = UseHr();
  const navigate = useNavigate();
 const handleLogout = () =>{
   logOut();
-  navigate('/')
+  navigate('/');
 }
 
 const links = <>
@@ -73,15 +68,17 @@ const links = <>
     <div className="dropdown dropdown-end">
       
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-
-        <div className="w-10 rounded-full">
-          {
+      <div className="w-10 h-10 rounded-full">
+        <NavLink to='/dashboard/profile'>
+      
+        {
             user? <><img
             alt={user?.displayName}
             src={user?.photoURL} /></> : <><span className="text-4xl"><FaUserCircle /></span></>
           }
-          
-        </div>
+              
+        </NavLink >
+        </div>   
       </div>
 
     </div>

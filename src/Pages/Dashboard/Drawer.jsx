@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { FcBullish, FcCallback, FcHome } from "react-icons/fc";
+import { useContext, useEffect, useState } from "react";
+import { FcBullish, FcCallback, FcHome, FcOk } from "react-icons/fc";
 import { LuLogOut } from "react-icons/lu";
 import { TiThMenu } from "react-icons/ti";
 import { Link, Outlet, useNavigate} from "react-router-dom";
@@ -10,6 +10,7 @@ import UseHr from "../../Hooks/UseHr";
 import { FaMessage, FaSheetPlastic } from "react-icons/fa6";
 import { CgProfile } from "react-icons/cg";
 import { ImStatsDots } from "react-icons/im";
+import { IoMdStats } from "react-icons/io";
 
 const Drawer = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -21,6 +22,18 @@ const handleLogout = () => {
     logOut();
     navigate("/");
 };
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    if (user?.email) {
+      fetch(`https://assignment-12-server-iota-steel.vercel.app/usersProfile/${user.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setUserData(data);
+        })
+        .catch((error) => console.error("Error fetching user data:", error));
+    }
+  }, [user]);
 
   return (
     <div>
@@ -51,7 +64,15 @@ const handleLogout = () => {
                   <img alt={user.displayName} src={user.photoURL} />
                 </div>
               </div>
-              <h1 className="text-xl p-2">{user.displayName}</h1>
+              <h1 className="text-xl p-2 flex">{user.displayName}
+                  <span
+                    className="text-xl p-1"
+                  >
+                    {
+                      userData?.isVerified ? <FcOk /> : " " 
+                    }
+                  </span>
+              </h1>
             </div>
             </Link>
           
@@ -111,13 +132,26 @@ const handleLogout = () => {
                 </Link>
                 <Link to="/dashboard/progress" className="flex my-4">
                   <span className="text-2xl pr-2">
-                  <FcBullish />
+                  <IoMdStats />
+
                   </span>
                   <p>Progress</p>
                 </Link>
               </>
             ) : (
               <>
+              <Link to="/dashboard/overview" className="flex my-4">
+                  <span className="text-2xl pr-2">
+                  <ImStatsDots />
+                  </span>
+                  <p>Overview</p>
+                </Link>
+                 <Link to="/dashboard/profile" className="flex my-4">
+                  <span className="text-2xl pr-2">
+                  <CgProfile />
+                  </span>
+                  <p>Profile</p>
+                </Link>
                 <Link to="/dashboard/worksheet" className="flex my-4">
                   <span className="text-2xl pr-2">
                   <FaSheetPlastic />

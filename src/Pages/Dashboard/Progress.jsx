@@ -1,17 +1,18 @@
-import  { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import UseAxiosPublic from '../../Hooks/UseAxiosPublic';
+import { useState } from "react";
+import UseAxiosPublic from "../../Hooks/UseAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const Progress = () => {
   const axiosPublic = UseAxiosPublic();
   const [selectedEmployee, setSelectedEmployee] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
+  const [sortOrder, setSortOrder] = useState("asc");
 
-
-  const { data: works = [] } = useQuery({
-    queryKey: ['works'],
+  const { data: works = [], isLoading, error, refetch } = useQuery({
+    queryKey: ['works', selectedEmployee, selectedMonth, sortOrder],
     queryFn: async () => {
-      const res = await axiosPublic.get('/works');
+      const res = await axiosPublic.get(`/works?sortOrder=${sortOrder}&month=${selectedMonth}`);
+      console.log(res.data);
       return res.data;
     },
   });
@@ -24,6 +25,7 @@ const Progress = () => {
       })
     )
   );
+
   const filteredWorks = works.filter((work) => {
     const employeeMatch = selectedEmployee ? work.name === selectedEmployee : true;
     const monthMatch = selectedMonth
@@ -32,21 +34,40 @@ const Progress = () => {
     return employeeMatch && monthMatch;
   });
 
+  const handleSortChange = (order) => {
+    setSortOrder(order);
+  };
+  const sortedWorks = [...filteredWorks].sort((a, b) => {
+    const aHours = parseInt(a.hours, 10); 
+    const bHours = parseInt(b.hours, 10);
+
+    return sortOrder === "asc" ? aHours - bHours : bHours - aHours;
+  });
+
   return (
     <div className="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
       <h1 className="text-xl sm:text-2xl font-bold text-center mb-6">
-        Work Records: {filteredWorks.length}
+        Work Records: {sortedWorks.length}
       </h1>
+      <p className="text-center">Sort By</p>
+      <div className="flex justify-center gap-4 mb-4">
+       <select
+          className="select select-bordered text-black"
+          value={sortOrder}
+          onChange={(e) => handleSortChange(e.target.value)}
+        > 
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1 name">
-            Select Employee:
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-1 name">Select Employee:</label>
           <select
             value={selectedEmployee}
             onChange={(e) => setSelectedEmployee(e.target.value)}
-            className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300 text-black"
+            className="w-full p-2 border rounded-md shadow-sm focus:ring focus:ring-blue-300 text-black "
           >
             <option value="">All Employees</option>
             {works.map((emp) => (
@@ -57,9 +78,7 @@ const Progress = () => {
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1 name">
-            Select Month:
-          </label>
+          <label className="block text-sm font-medium text-gray-700 mb-1 name">Select Month:</label>
           <select
             value={selectedMonth}
             onChange={(e) => setSelectedMonth(e.target.value)}
@@ -86,7 +105,7 @@ const Progress = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredWorks.map((work) => (
+            {sortedWorks.map((work) => (
               <tr key={work._id} className="hover:bg-gray-100">
                 <td className="p-4 text-sm text-gray-700">{work.name}</td>
                 <td className="p-4 text-sm text-gray-700">{work.hours}h</td>

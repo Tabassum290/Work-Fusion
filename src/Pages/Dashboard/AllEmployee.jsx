@@ -7,11 +7,13 @@ import { useState } from "react";
 const AllEmployee = () => {
   const axiosSecure = UseAxiosSecret();
   const [view, setView] = useState("table");
+  const [sortBy, setSortBy] = useState("name");
+  const [sortOrder, setSortOrder] = useState("asc");
 
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["users"],
+    queryKey: ["users", sortBy, sortOrder],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users");
+      const res = await axiosSecure.get(`/users?sortBy=${sortBy}&sortOrder=${sortOrder}`);
       return res.data;
     },
   });
@@ -27,7 +29,7 @@ const AllEmployee = () => {
       confirmButtonText: "Yes, fire!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/users/fire/${user._id}`).then((res) => {
+        axiosSecure.patch(`/users/fire/${user._id}`).then(() => {
           refetch();
           Swal.fire({
             title: "Fired!",
@@ -50,7 +52,7 @@ const AllEmployee = () => {
       confirmButtonText: "Yes, Make HR!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/users/makehr/${user._id}`).then((res) => {
+        axiosSecure.patch(`/users/makehr/${user._id}`).then(() => {
           refetch();
           Swal.fire({
             title: "HR",
@@ -72,12 +74,35 @@ const AllEmployee = () => {
         <p className="text-xl lg:text-2xl font-bold font-serif">
           Employee Count: {users.length}
         </p>
-        <button
-          onClick={toggleView}
-          className="btn btn-primary text-white"
-        >
+        <button onClick={toggleView} className="btn btn-primary text-white">
           Toggle to {view === "table" ? "Card View" : "Table View"}
         </button>
+      </div>
+
+      <div className="flex gap-4 mb-4">
+        <select
+          className="select select-bordered"
+          value={sortBy}
+          onChange={(e) => {
+            setSortBy(e.target.value);
+            refetch();
+          }}
+        >
+          <option value="name">Sort by Name</option>
+          <option value="designation">Sort by Designation</option>
+        </select>
+
+        <select
+          className="select select-bordered"
+          value={sortOrder}
+          onChange={(e) => {
+            setSortOrder(e.target.value);
+            refetch();
+          }}
+        >
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
       </div>
 
       {view === "table" ? (
@@ -121,7 +146,7 @@ const AllEmployee = () => {
                   <td>
                     {user.role === "admin" ? (
                       <span className="text-gray-500">Cannot fire Admin</span>
-                    ) : user.role == 'fired' ? (
+                    ) : user.role === "fired" ? (
                       <span className="text-red-500">Fired</span>
                     ) : (
                       <button
@@ -140,16 +165,9 @@ const AllEmployee = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
           {users.map((user) => (
-            <div
-              key={user._id}
-              className="card bg-gray-100 shadow-md p-4 border rounded-lg"
-            >
+            <div key={user._id} className="card bg-gray-100 shadow-md p-4 border rounded-lg">
               <div>
-                <img
-                  className="w-12 h-12 rounded-3xl"
-                  src={user.image}
-                  alt=""
-                />
+                <img className="w-12 h-12 rounded-3xl" src={user.image} alt="" />
                 <h3 className="text-xl font-bold text-black">{user.name}</h3>
               </div>
               <p className="text-blue-600">Designation: {user.designation}</p>
@@ -165,20 +183,19 @@ const AllEmployee = () => {
                     HR
                   </p>
                 ) : (
-                  <button
-                    onClick={() => handleMakeHr(user)}
-                    className="btn btn-sm btn-primary text-white"
-                  >
+                  <button onClick={() => handleMakeHr(user)} className="btn btn-sm btn-primary text-white">
                     Make HR
                   </button>
                 )}
-{user?.role === "admin" && (<span className="text-gray-800">Cannot Fire Admin</span>)}
-{user?.role === "fired" ? (
-  <span className="text-gray-700">Cannot Fire</span>
-) : (
-  <span className="text-red-600">Fire</span>
-)}
-
+                {user.role === "admin" ? (
+                  <span className="text-gray-800">Cannot Fire Admin</span>
+                ) : user.role === "fired" ? (
+                  <span className="text-gray-700">Fired</span>
+                ) : (
+                  <button onClick={() => handleFire(user)} className="btn btn-sm bg-red-500 text-white">
+                    Fire
+                  </button>
+                )}
               </div>
             </div>
           ))}
