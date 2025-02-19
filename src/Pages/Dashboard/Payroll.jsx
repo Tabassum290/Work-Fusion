@@ -30,7 +30,7 @@ const Payroll = () => {
           </thead>
           <tbody>
             {payrolls.map((employee, index) => (
-              <tr key={employee._id}>
+              <tr key={employee._id} className="hover:bg-gray-100 hover:text-black">
                 <td>{index + 1}</td>
                 <td>{employee.name}</td>
                 <td>${employee.salary}</td>

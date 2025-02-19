@@ -81,7 +81,7 @@ const AllEmployee = () => {
       </div>
 
       {view === "table" ? (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto mb-6">
           <table className="table w-full">
             <thead className="bg-blue-600 text-white">
               <tr>
@@ -94,7 +94,7 @@ const AllEmployee = () => {
             </thead>
             <tbody>
               {users.map((user, index) => (
-                <tr key={user._id} className="hover:bg-gray-100">
+                <tr key={user._id} className="hover:bg-gray-100 hover:text-black">
                   <th>{index + 1}</th>
                   <td>{user.name}</td>
                   <td>{user.designation}</td>
@@ -138,7 +138,7 @@ const AllEmployee = () => {
           </table>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
           {users.map((user) => (
             <div
               key={user._id}
@@ -150,7 +150,7 @@ const AllEmployee = () => {
                   src={user.image}
                   alt=""
                 />
-                <h3 className="text-xl font-bold">{user.name}</h3>
+                <h3 className="text-xl font-bold text-black">{user.name}</h3>
               </div>
               <p className="text-blue-600">Designation: {user.designation}</p>
               <div className="flex justify-between mt-4">
@@ -167,16 +167,16 @@ const AllEmployee = () => {
                 ) : (
                   <button
                     onClick={() => handleMakeHr(user)}
-                    className="btn btn-sm btn-primary"
+                    className="btn btn-sm btn-primary text-white"
                   >
                     Make HR
                   </button>
                 )}
-{user?.role === "admin" && (<span>Cannot Fire Admin</span>)}
+{user?.role === "admin" && (<span className="text-gray-800">Cannot Fire Admin</span>)}
 {user?.role === "fired" ? (
-  <span>Cannot Fire</span>
+  <span className="text-gray-700">Cannot Fire</span>
 ) : (
-  <span>Fire</span>
+  <span className="text-red-600">Fire</span>
 )}
 
               </div>

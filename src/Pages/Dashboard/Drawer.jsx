@@ -44,6 +44,7 @@ const handleLogout = () => {
           ></label>
           <ul className="menu bg-base-200 text-black text-xl min-h-full w-80 p-4">
             <h1 className="text-3xl font-bold mb-6 italic">Work Fusion</h1>
+            <Link to='/dashboard/profile'>
             <div className="flex">
               <div tabIndex={0} role="button" className="btn btn-circle avatar mb-4">
                 <div className="w-12 rounded-full">
@@ -52,6 +53,8 @@ const handleLogout = () => {
               </div>
               <h1 className="text-xl p-2">{user.displayName}</h1>
             </div>
+            </Link>
+          
 
             {isAdmin ? (
               <>
